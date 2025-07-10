@@ -101,7 +101,7 @@ class Partido(Base):
     torneo = relationship("Torneo", back_populates="partidos")
     categoria = relationship("Categoria", back_populates="partidos")
 
-class Participante(Base):
+class ParticipantePartido(Base):
     __tablename__ = 'participantes_partido'
     id = Column(Integer, primary_key=True)
     rol = Column(String) 
@@ -110,7 +110,7 @@ class Participante(Base):
     participacion = relationship("Participacion", back_populates="partidos")
     partido = relationship("Partido", back_populates="participantes")
 
-class Resultado(Base):
+class ResultadoSet(Base):
     __tablename__ = 'resultados_sets'
     id = Column(Integer, primary_key=True)
     numero_set = Column(Integer)

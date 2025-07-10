@@ -52,4 +52,4 @@ def eliminar_jugador(jugador_id: int, db: Session = Depends(get_db)):
     eliminado = crud_jugador.eliminar_jugador(db, jugador_id)
     if not eliminado:
         raise HTTPException(status_code=404, detail="Jugador no encontrado")
-    return {"ok": True, "mensaje": "Jugador eliminado"}
+    return {"buena": True, "mensaje": "Jugador exterminado"}
