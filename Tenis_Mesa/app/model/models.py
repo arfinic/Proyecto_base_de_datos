@@ -22,15 +22,16 @@ class Jugador(Base):
     asociacion_id = Column(Integer, ForeignKey('asociaciones.id'), nullable=True)
     asociacion = relationship("Asociacion", back_populates="jugadores")
 
-    equipos1 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador1_id', back_populates="jugador1")
-    equipos2 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador2_id', back_populates="jugador2")
+    equipos1 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador1_id', back_populates="jugador1", cascade="all, delete", passive_deletes=True)
+    equipos2 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador2_id', back_populates="jugador2", cascade="all, delete", passive_deletes=True)
     participaciones = relationship("Participacion", back_populates="jugador")
 
 class EquipoDoble(Base):
     __tablename__ = 'equipos_dobles'
     id = Column(Integer, primary_key=True)
-    jugador1_id = Column(Integer, ForeignKey('jugadores.id'))
-    jugador2_id = Column(Integer, ForeignKey('jugadores.id'))
+    nombre = Column(String) 
+    jugador1_id = Column(Integer, ForeignKey('jugadores.id', ondelete="CASCADE"))
+    jugador2_id = Column(Integer, ForeignKey('jugadores.id', ondelete="CASCADE"))
     jugador1 = relationship("Jugador", foreign_keys=[jugador1_id], back_populates="equipos1")
     jugador2 = relationship("Jugador", foreign_keys=[jugador2_id], back_populates="equipos2")
     participaciones = relationship("Participacion", back_populates="equipo")
