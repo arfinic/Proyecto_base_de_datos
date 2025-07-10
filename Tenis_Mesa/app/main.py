@@ -1,8 +1,10 @@
-from app.database import engine, Base
-from app import model
+from fastapi import FastAPI
+from app.routers import jugador
 
-def init_db():
-    Base.metadata.create_all(bind=engine)
+app = FastAPI()
+
+app.include_router(jugador.router)
 
 if __name__ == "__main__":
-    init_db()
+    from app.database import engine, Base
+    Base.metadata.create_all(bind=engine)
