@@ -3,6 +3,12 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import Participantespartido as crud_participantepartido
 
+"""
+Módulo de rutas (router) para ParticipantePartido
+
+Gestiona la relación de participación específica en un partido, ya sea de jugadores individuales o equipos dobles. Permite crear, consultar, actualizar y eliminar estas relaciones, que conectan participaciones con partidos y roles (ej. titular, suplente).
+"""
+
 router = APIRouter(
     prefix="/participantespartido",
     tags=["participantespartido"]

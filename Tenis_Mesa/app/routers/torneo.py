@@ -2,6 +2,21 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.crud import Torneo as crud_torneo
 from sqlalchemy.orm import Session
 from app.database import get_db
+"""
+Módulo de Rutas (Router) para Torneo
+
+Este archivo implementa los endpoints para la gestión de torneos. Permite la administración completa del ciclo de vida de un torneo de tenis de mesa desde la creación, consulta, modificación y eliminación.
+
+Las funcionalidades disponibles incluyen:
+
+- Registrar un nuevo torneo con sus fechas y cantidad de mesas disponibles.
+- Listar todos los torneos existentes en el sistema.
+- Obtener los detalles de un torneo específico usando su identificador.
+- Actualizar información relevante de un torneo, como fechas o cantidad de mesas.
+- Eliminar un torneo en caso de cancelación o finalización.
+
+Todos los endpoints aseguran el acceso a la base de datos usando la sesión proporcionada por FastAPI.
+"""
 
 router = APIRouter(
         prefix="/Torneos",

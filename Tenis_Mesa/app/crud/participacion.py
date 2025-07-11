@@ -38,6 +38,16 @@ def actualizar_participacion(db, participacion_id, jugador_id=None, torneo_id=No
     return participacion
 
 def eliminar_participacion(db, participacion_id):
+    """
+    Elimina un registro de participacion de la base de dato
+
+    Parámetros:
+        db (Session): Sesión de base de datos.
+        participacion_id (int).
+
+    Retorna:
+        bool: True si eliminado, False si no.
+    """
     participacion = db.query(Participacion).filter(Participacion.id == participacion_id).first()
     if participacion:
         db.delete(participacion)

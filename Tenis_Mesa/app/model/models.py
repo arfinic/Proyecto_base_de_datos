@@ -2,6 +2,11 @@ from sqlalchemy import Column, Integer, String, Date, ForeignKey, Boolean, DateT
 from sqlalchemy.orm import relationship, declarative_base
 
 Base = declarative_base()
+""""
+generacion de todas las clases para el proyecto, en si sus modulos, cada uno con sus 
+atributos propios y relaciones entre si, algunas pueden ser null otras no
+"""
+
 
 class Asociacion(Base):
     __tablename__ = 'asociaciones'

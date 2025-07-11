@@ -3,6 +3,12 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.model import Grupo as crud_grupo
 
+"""
+Módulo de rutas (router) para Grupo
+
+Administra los grupos de jugadores o equipos dentro de una categoría específica de un torneo. Permite crear, consultar, modificar y eliminar grupos, así como gestionar la relación con sus categorías y participaciones asociadas. Utiliza sesiones de base de datos para integridad de la información.
+"""
+
 router = APIRouter(
         prefix="/Grupos",
         tags=["Grupos"])

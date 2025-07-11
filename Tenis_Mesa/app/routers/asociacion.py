@@ -3,6 +3,12 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import asociacion as crud_asociacion
 
+"""
+Módulo de rutas (router) para Asociación
+
+Define los endpoints necesarios para administrar las asociaciones dentro del sistema. Permite registrar nuevas asociaciones, consultar todas las existentes, obtener detalles por ID, modificar datos y eliminar asociaciones si es necesario. Utiliza el sistema de sesiones de FastAPI para la gestión de la base de datos.
+"""
+
 router = APIRouter(
     prefix="/asociaciones",
     tags=["asociaciones"]

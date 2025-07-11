@@ -2,6 +2,21 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import jugador as crud_jugador
+"""
+Módulo de Rutas (Router) para Jugador
+
+Este archivo define los endpoints relacionados con la entidad Jugador. Permite gestionar la creación, consulta, actualización y eliminación de jugadores dentro del sistema de gestión de torneos de tenis de mesa.
+
+Las rutas implementadas permiten:
+
+- Crear un nuevo jugador con sus datos personales y, opcionalmente, su asociación.
+- Listar todos los jugadores registrados.
+- Obtener información detallada de un jugador por su identificador único.
+- Actualizar los datos de un jugador existente (por ejemplo, para corregir errores o cambiar de asociación).
+- Eliminar un jugador del sistema.
+
+Todos los endpoints utilizan una sesión de base de datos gestionada por FastAPI mediante la dependencia `get_db`, lo que asegura el manejo adecuado de conexiones y transacciones.
+"""
 
 router = APIRouter(
     prefix="/jugadores",

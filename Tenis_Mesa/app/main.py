@@ -1,9 +1,11 @@
 from fastapi import FastAPI
+# Importa los routers de cada entidad del sistema
 from app.routers import jugador, asociacion, equipodoble, categoria, torneo, grupo, mesa, Partido, ParticipantesPartido
 from app.routers import Resultadosset, participacion
 
+# Instancia principal de la aplicación FastAPI
 app = FastAPI()
-
+# Incluye los routers de cada módulo/entidad
 app.include_router(jugador.router)
 app.include_router(asociacion.router)
 app.include_router(equipodoble.router)

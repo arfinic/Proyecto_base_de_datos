@@ -3,6 +3,12 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import ResultadoSet as crud_resultadoset
 
+"""
+Módulo de rutas (router) para ResultadoSet
+
+Administra los resultados individuales de cada set dentro de un partido. Permite registrar, consultar, actualizar y eliminar los puntajes obtenidos por los participantes en cada set, vinculando correctamente con los partidos y los participantes de cada set.
+"""
+
 router = APIRouter(
     prefix="/resultadosets",
     tags=["resultadosets"]

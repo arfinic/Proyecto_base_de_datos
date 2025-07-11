@@ -3,6 +3,12 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import Partido as crud_partido
 
+"""
+Módulo de rutas (router) para Partido
+
+Administra los encuentros o partidos del torneo, permitiendo registrar, consultar, actualizar y eliminar partidos. Cada partido está vinculado a una mesa, categoría y torneo, así como a los participantes correspondientes. Opera siempre usando sesiones de base de datos controladas por FastAPI.
+"""
+
 router = APIRouter(
     prefix="/partidos",
     tags=["partidos"]

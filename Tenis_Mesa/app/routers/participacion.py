@@ -3,6 +3,13 @@ from app.crud import participacion as crud_participacion
 from sqlalchemy.orm import Session
 from app.database import get_db
 
+"""
+Módulo de rutas (router) para Participación
+
+Gestiona las inscripciones de jugadores y equipos en los torneos, vinculando adecuadamente con categoría, torneo y grupo. Permite realizar operaciones CRUD sobre las participaciones, asegurando el correcto registro de los participantes en cada evento.
+"""
+
+
 router = APIRouter(
     prefix="/Participaciones",
     tags=["Participaciones"]

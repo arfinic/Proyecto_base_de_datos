@@ -3,6 +3,12 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import Categoria as crud_categoria
 
+"""
+Módulo de rutas (router) para Categoría
+
+Administra las diferentes categorías de competencia, definidas por rangos de edad, género y condiciones de juego (sets, puntos). Permite realizar operaciones CRUD para organizar mejor los participantes según sus características y nivel. Utiliza sesiones de base de datos de FastAPI para las transacciones.
+"""
+
 router = APIRouter(
         prefix="/categorias",
         tags=["categorias"]

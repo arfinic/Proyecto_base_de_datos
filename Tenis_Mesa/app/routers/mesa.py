@@ -2,6 +2,12 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import mesa as crud_mesa
+"""
+Módulo de rutas (router) para Mesa
+
+Permite administrar las mesas físicas sobre las que se juegan los partidos en un torneo. Facilita operaciones de alta, baja, consulta y edición de mesas, y su relación con los torneos. Emplea sesiones de base de datos provistas por FastAPI.
+"""
+
 
 router = APIRouter(prefix="/mesas", tags=["mesas"])
 

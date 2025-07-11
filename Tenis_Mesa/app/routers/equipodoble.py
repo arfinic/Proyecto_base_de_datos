@@ -2,6 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.crud import equipoDoble as crud_equipodoble
+"""
+Módulo de rutas (router) para Equipo Doble
+
+Permite gestionar los equipos dobles (pares de jugadores) que participan en los torneos. Incluye la creación, consulta, modificación y eliminación de equipos dobles, asegurando que cada equipo esté compuesto por dos jugadores válidos. Todas las operaciones emplean sesiones de base de datos controladas por FastAPI.
+"""
 
 router = APIRouter(
     prefix="/equiposdobles",

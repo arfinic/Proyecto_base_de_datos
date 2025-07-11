@@ -36,6 +36,16 @@ def actualizar_resultado_set(db: Session, resultado_set_id: int, partido_id=None
     return resultado
 
 def eliminar_resultado_set(db: Session, resultado_set_id: int):
+    """
+    Elimina un resultado_set de la base de datos por su ID.
+
+    Parámetros:
+        db (Session): Sesión de base de datos.
+        resultado_set_id (int): ID del resultado a eliminar.
+
+    Retorna:
+        bool: True si fue eliminado, False si no existía.
+    """
     resultado = db.query(ResultadoSet).filter_by(id=resultado_set_id).first()
     if not resultado:
         return False
