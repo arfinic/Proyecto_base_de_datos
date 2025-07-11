@@ -12,7 +12,8 @@ Generic single-database configuration.
 
 - Python 3.11+
 - PostgreSQL
-- sqlalchemy 
+- sqlalchemy
+- alembic 
 - [Opcional] Git
 
 ## Instalación del entorno
