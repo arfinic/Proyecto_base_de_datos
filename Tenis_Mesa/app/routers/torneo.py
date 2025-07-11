@@ -1,17 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.crud import Torneo as crud_torneo
-from app.database import SessionLocal
+from sqlalchemy.orm import Session
+from app.database import get_db
 
 router = APIRouter(
         prefix="/Torneos",
         tags=["Torneos"])
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/")
 def crear_torneo(nombre: str, fecha_inscripcion: str, fecha_competencia: str, mesas_disponibles: int, db=Depends(get_db)):

@@ -60,6 +60,7 @@ class Torneo(Base):
     mesas_disponibles = Column(Integer)
     participaciones = relationship("Participacion", back_populates="torneo")
     partidos = relationship("Partido", back_populates="torneo")
+    mesas = relationship("Mesa", back_populates="torneo")
 
 class Grupo(Base):
     __tablename__ = 'grupos'
@@ -89,7 +90,6 @@ class Partido(Base):
     id = Column(Integer, primary_key=True)
     tipo_partido = Column(String) 
     horario_inicio = Column(DateTime)
-    mesa_asignada = Column(Integer)
     fase = Column(String) 
     ronda_eliminacion = Column(String, nullable=True)
     ganador_id = Column(Integer, ForeignKey('participaciones.id'))
@@ -101,6 +101,8 @@ class Partido(Base):
     resultados = relationship("ResultadoSet", back_populates="partido")
     torneo = relationship("Torneo", back_populates="partidos")
     categoria = relationship("Categoria", back_populates="partidos")
+    mesa_id = Column(Integer, ForeignKey('mesas.id'), nullable=True)
+    mesa = relationship("Mesa", back_populates="partidos")
 
 class ParticipantePartido(Base):
     __tablename__ = 'participantes_partido'
@@ -119,3 +121,12 @@ class ResultadoSet(Base):
     puntos_jugador2 = Column(Integer)
     partido_id = Column(Integer, ForeignKey('partidos.id'))
     partido = relationship("Partido", back_populates="resultados")
+
+class Mesa(Base):
+    __tablename__ = 'mesas'
+    id = Column(Integer, primary_key=True)
+    numero = Column(Integer, nullable=False)
+    torneo_id = Column(Integer, ForeignKey('torneos.id'), nullable=False)
+
+    torneo = relationship("Torneo", back_populates="mesas")
+    partidos = relationship("Partido", back_populates="mesa")
