@@ -5,7 +5,7 @@ def crear_equipo_doble(db: Session, jugador1_id: int, jugador2_id: int, nombre: 
     jugador1 = db.query(Jugador).filter(Jugador.id == jugador1_id).first()
     jugador2 = db.query(Jugador).filter(Jugador.id == jugador2_id).first()
     if not jugador1 or not jugador2:
-        return None  # O lanza una excepción personalizada
+        return None 
     equipo = EquipoDoble(jugador1_id=jugador1_id, jugador2_id=jugador2_id, nombre=nombre)
     db.add(equipo)
     db.commit()
