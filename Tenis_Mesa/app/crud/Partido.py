@@ -1,20 +1,11 @@
-from app.model import Partido
-from datetime import datetime
+from app.model.models import Partido
 
-def crear_partido(db, tipo_partido, horario_inicio, fase, ronda_eliminacion, ganador_id, perdedor_id, is_bye, torneo_id, categoria_id, mesa_id):
-    
-    if isinstance(horario_inicio, str):
-        horario_inicio = datetime.fromisoformat(horario_inicio)
+def crear_partido(db, torneo_id, categoria_id, tipo, fecha_hora, mesa_id):
     partido = Partido(
-        tipo_partido=tipo_partido,
-        horario_inicio=horario_inicio,
-        fase=fase,
-        ronda_eliminacion=ronda_eliminacion,
-        ganador_id=ganador_id,
-        perdedor_id=perdedor_id,
-        is_bye=is_bye,
         torneo_id=torneo_id,
         categoria_id=categoria_id,
+        tipo=tipo,
+        fecha_hora=fecha_hora,
         mesa_id=mesa_id
     )
     db.add(partido)

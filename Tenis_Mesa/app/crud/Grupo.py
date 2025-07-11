@@ -1,7 +1,7 @@
-from app.model import Grupo, Categoria
+from app.model.models import Grupo
 
-def crear_grupo(db, nombre, categoria_id):
-    grupo = Grupo(nombre=nombre, categoria_id=categoria_id)
+def crear_grupo(db, nombre, torneo_id):
+    grupo = Grupo(nombre=nombre, torneo_id=torneo_id)
     db.add(grupo)
     db.commit()
     db.refresh(grupo)

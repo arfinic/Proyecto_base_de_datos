@@ -22,15 +22,16 @@ class Jugador(Base):
     asociacion_id = Column(Integer, ForeignKey('asociaciones.id'), nullable=True)
     asociacion = relationship("Asociacion", back_populates="jugadores")
 
-    equipos1 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador1_id', back_populates="jugador1")
-    equipos2 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador2_id', back_populates="jugador2")
+    equipos1 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador1_id', back_populates="jugador1", cascade="all, delete", passive_deletes=True)
+    equipos2 = relationship("EquipoDoble", foreign_keys='EquipoDoble.jugador2_id', back_populates="jugador2", cascade="all, delete", passive_deletes=True)
     participaciones = relationship("Participacion", back_populates="jugador")
 
 class EquipoDoble(Base):
     __tablename__ = 'equipos_dobles'
     id = Column(Integer, primary_key=True)
-    jugador1_id = Column(Integer, ForeignKey('jugadores.id'))
-    jugador2_id = Column(Integer, ForeignKey('jugadores.id'))
+    nombre = Column(String) 
+    jugador1_id = Column(Integer, ForeignKey('jugadores.id', ondelete="CASCADE"))
+    jugador2_id = Column(Integer, ForeignKey('jugadores.id', ondelete="CASCADE"))
     jugador1 = relationship("Jugador", foreign_keys=[jugador1_id], back_populates="equipos1")
     jugador2 = relationship("Jugador", foreign_keys=[jugador2_id], back_populates="equipos2")
     participaciones = relationship("Participacion", back_populates="equipo")
@@ -59,6 +60,7 @@ class Torneo(Base):
     mesas_disponibles = Column(Integer)
     participaciones = relationship("Participacion", back_populates="torneo")
     partidos = relationship("Partido", back_populates="torneo")
+    mesas = relationship("Mesa", back_populates="torneo")
 
 class Grupo(Base):
     __tablename__ = 'grupos'
@@ -88,7 +90,6 @@ class Partido(Base):
     id = Column(Integer, primary_key=True)
     tipo_partido = Column(String) 
     horario_inicio = Column(DateTime)
-    mesa_asignada = Column(Integer)
     fase = Column(String) 
     ronda_eliminacion = Column(String, nullable=True)
     ganador_id = Column(Integer, ForeignKey('participaciones.id'))
@@ -100,29 +101,25 @@ class Partido(Base):
     resultados = relationship("ResultadoSet", back_populates="partido")
     torneo = relationship("Torneo", back_populates="partidos")
     categoria = relationship("Categoria", back_populates="partidos")
+    mesa_id = Column(Integer, ForeignKey('mesas.id'), nullable=True)
+    mesa = relationship("Mesa", back_populates="partidos")
 
-class Participante(Base):
+class ParticipantePartido(Base):
     __tablename__ = 'participantes_partido'
     id = Column(Integer, primary_key=True)
-    rol = Column(String)
+    rol = Column(String) 
     participacion_id = Column(Integer, ForeignKey('participaciones.id'))
     partido_id = Column(Integer, ForeignKey('partidos.id'))
-    equipo_doble_id = Column(Integer, ForeignKey('equipos_dobles.id'), nullable=True)
     participacion = relationship("Participacion", back_populates="partidos")
     partido = relationship("Partido", back_populates="participantes")
 
-class Resultado(Base):
+class ResultadoSet(Base):
     __tablename__ = 'resultados_sets'
     id = Column(Integer, primary_key=True)
-    numero_set = Column(Integer, nullable=False)
-    puntos = Column(Integer, nullable=False)
-    participante_partido_id = Column(Integer, ForeignKey('participantes_partido.id'))
+    numero_set = Column(Integer)
+    puntos_jugador1 = Column(Integer)
+    puntos_jugador2 = Column(Integer)
     partido_id = Column(Integer, ForeignKey('partidos.id'))
-<<<<<<< Updated upstream
-    partido = relationship("Partido", back_populates="resultados")
-=======
-
-    participante_partido = relationship("ParticipantePartido")
     partido = relationship("Partido", back_populates="resultados")
 
 class Mesa(Base):
@@ -133,4 +130,3 @@ class Mesa(Base):
 
     torneo = relationship("Torneo", back_populates="mesas")
     partidos = relationship("Partido", back_populates="mesa")
->>>>>>> Stashed changes

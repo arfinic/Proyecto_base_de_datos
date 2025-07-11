@@ -1,15 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.crud import Grupo as crud_grupo
+from app.model import Grupo as crud_grupo
 
 router = APIRouter(
         prefix="/Grupos",
         tags=["Grupos"])
 
 @router.post("/")
-def crear_grupo(nombre: str, categoria_id: int, db=Depends(get_db)):
-    return crud_grupo.crear_grupo(db, nombre, categoria_id)
+def crear_grupo(nombre: str, torneo_id: int, db=Depends(get_db)):
+    return crud_grupo.crear_grupo(db, nombre, torneo_id)
 
 @router.get("/")
 def listar_grupos(db=Depends(get_db)):
