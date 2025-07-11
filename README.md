@@ -11,7 +11,8 @@ Generic single-database configuration.
 ## Requisitos previos
 
 - Python 3.11+
-- PostgreSQL (o el motor que uses)
+- PostgreSQL
+- sqlalchemy 
 - [Opcional] Git
 
 ## Instalación del entorno
