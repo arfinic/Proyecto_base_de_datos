@@ -104,17 +104,33 @@ class Partido(Base):
 class Participante(Base):
     __tablename__ = 'participantes_partido'
     id = Column(Integer, primary_key=True)
-    rol = Column(String) 
+    rol = Column(String)
     participacion_id = Column(Integer, ForeignKey('participaciones.id'))
     partido_id = Column(Integer, ForeignKey('partidos.id'))
+    equipo_doble_id = Column(Integer, ForeignKey('equipos_dobles.id'), nullable=True)
     participacion = relationship("Participacion", back_populates="partidos")
     partido = relationship("Partido", back_populates="participantes")
 
 class Resultado(Base):
     __tablename__ = 'resultados_sets'
     id = Column(Integer, primary_key=True)
-    numero_set = Column(Integer)
-    puntos_jugador1 = Column(Integer)
-    puntos_jugador2 = Column(Integer)
+    numero_set = Column(Integer, nullable=False)
+    puntos = Column(Integer, nullable=False)
+    participante_partido_id = Column(Integer, ForeignKey('participantes_partido.id'))
     partido_id = Column(Integer, ForeignKey('partidos.id'))
+<<<<<<< Updated upstream
     partido = relationship("Partido", back_populates="resultados")
+=======
+
+    participante_partido = relationship("ParticipantePartido")
+    partido = relationship("Partido", back_populates="resultados")
+
+class Mesa(Base):
+    __tablename__ = 'mesas'
+    id = Column(Integer, primary_key=True)
+    numero = Column(Integer, nullable=False)
+    torneo_id = Column(Integer, ForeignKey('torneos.id'), nullable=False)
+
+    torneo = relationship("Torneo", back_populates="mesas")
+    partidos = relationship("Partido", back_populates="mesa")
+>>>>>>> Stashed changes
